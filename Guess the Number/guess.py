@@ -8,5 +8,19 @@ Instructions:
 
 ---Best of Luck---""")
 
-while(1):
-    pass
+chnce=30
+num = random.randint(1,100)
+
+print("I Guessed a Number,",end='')
+
+while(chnce):
+    try:
+        gus = int(input("Enter:>"))
+    except:break
+    chnce-=1
+    if(gus==num):
+        print("Wonderful Job")
+        break
+    print(f"You have {chnce} chances to go\n")
+if(chnce==0):
+    print(f"Number was {num}")
