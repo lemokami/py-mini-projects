@@ -14,13 +14,15 @@ Instructions:
 1.The computer guesses a word from the words text
 2.You will get the chances till the man dies
 """)
+
 input()
+
 os.system(fn)
 
 with open("Hangman/words.txt") as f:
     wordlist = [x[:-1] for x in f if len(x)>=2]
 
-word = wordlist[random.randint(0,len(wordlist))]
+word = wordlist[random.randint(0,len(wordlist))].lower()
 
 print(f"""I Guessed a word. What is it?
 It has {len(word)} letters.
@@ -29,17 +31,30 @@ H A N G M A N""")
 
 wordg = ['_' for i in range(len(word))]
 
+hangman = ["|","0","/","|","\\","/","\\"]
+space = "55440"
 while(1):
+    print("___________")
+    for i in range(5):
+        print(f"|{' '*int(space[i])}|")
+    print("-----------")
+
     print(word)
+    
     for i in wordg:
         print(f"{i} ",end='')
-    gus = input("\nGuess a letter:>")
-    for i in range(len(word)):
-        if(gus == word[i]):
-            wordg[i] = gus
     
     if "_" not in wordg:
+        print()
         break
+    
+    gus = input("\nGuess a letter:>")
+    
+    for i in range(len(word)):
+        if(gus.lower() == word[i]):
+            wordg[i] = gus
+    
+
     
     os.system(fn)
     
