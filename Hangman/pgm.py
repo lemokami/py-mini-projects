@@ -25,10 +25,26 @@ word = wordlist[random.randint(0,len(wordlist))]
 print(f"""I Guessed a word. What is it?
 It has {len(word)} letters.
 Guess it before your choices make him the
-H A N G M A N
-{'_ '*len(word)}""")
+H A N G M A N""")
 
-print(word)
+wordg = ['_' for i in range(len(word))]
+
+while(1):
+    print(word)
+    for i in wordg:
+        print(f"{i} ",end='')
+    gus = input("\nGuess a letter:>")
+    for i in range(len(word)):
+        if(gus == word[i]):
+            wordg[i] = gus
+    
+    if "_" not in wordg:
+        break
+    
+    os.system(fn)
+    
+        
+
 
 # This is how a hangman looks like
 # ___________
