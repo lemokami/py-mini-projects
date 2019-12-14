@@ -58,11 +58,12 @@ ___________
 
     if(ind!=7):
         
+        print(word)
         for i in wordg:
             print(f"{i} ",end='')
         
         if "_" not in wordg:
-            print()
+            print("\nCONGRATULATIONS!!!")
             break
         
         gus = input("\nGuess a letter:>")
