@@ -18,8 +18,12 @@ Instructions:
 input()
 
 os.system(fn)
-
-with open("Hangman/words.txt") as f:
+if (os.path.exists("Hangman/words.txt")):
+    pth = "Hangman/words.txt"
+else:
+    pth = "words.txt"
+    
+with open(pth,"r") as f:
     wordlist = [x[:-1] for x in f if len(x)>=2]
 
 word = wordlist[random.randint(0,len(wordlist))].lower()
