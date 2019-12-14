@@ -32,27 +32,45 @@ H A N G M A N""")
 wordg = ['_' for i in range(len(word))]
 
 hangman = ["|","0","/","|","\\","/","\\"]
-space = "55440"
-while(1):
-    print("___________")
-    for i in range(5):
-        print(f"|{' '*int(space[i])}|")
-    print("-----------")
 
-    print(word)
-    
-    for i in wordg:
-        print(f"{i} ",end='')
-    
-    if "_" not in wordg:
-        print()
+man = ['' for i in range(7)]
+
+ind = 0
+
+while(1):
+    correct = 0
+    print(f"""___________
+|     {man[0]}
+|     {man[1]}
+|    {man[2]}{man[3]}{man[4]}
+|    {man[5]} {man[6]}   
+|
+-----------""")
+
+    if(ind!=7):
+        
+        for i in wordg:
+            print(f"{i} ",end='')
+        
+        if "_" not in wordg:
+            print()
+            break
+        
+        gus = input("\nGuess a letter:>")
+        
+        for i in range(len(word)):
+            if(gus.lower() == word[i]):
+                correct = 1
+                wordg[i] = gus
+                
+    else:
+        print(f"The word was {word}")
+        print("YOU ARE HANGED")
         break
-    
-    gus = input("\nGuess a letter:>")
-    
-    for i in range(len(word)):
-        if(gus.lower() == word[i]):
-            wordg[i] = gus
+    if(not correct):
+        man[ind] = hangman[ind]
+        ind+=1
+
     
 
     
