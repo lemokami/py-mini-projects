@@ -28,22 +28,27 @@ with open(pth,"r") as f:
 
 word = wordlist[random.randint(0,len(wordlist))].lower()
 
-print(f"""I Guessed a word. What is it?
-It has {len(word)} letters.
-Guess it before your choices make him the
-H A N G M A N""")
+
 
 wordg = ['_' for i in range(len(word))]
 
 hangman = ["|","0","/","|","\\","/","\\"]
 
 man = ['' for i in range(7)]
-
+hman = "HANGMAN"
 ind = 0
 
 while(1):
+    print(f"""I Guessed a word. What is it?
+It has {len(word)} letters.
+Guess it before your choices make him the""")
+
+    for i in range(ind):
+        print(hman[i],end=" ")
+
     correct = 0
-    print(f"""___________
+    print(f"""
+___________
 |     {man[0]}
 |     {man[1]}
 |    {man[2]}{man[3]}{man[4]}
