@@ -1,4 +1,4 @@
-import random,os
+import random,os,json
 
 ch = int(input("Whats your OS\n1.WIN\t2.LINUX\n:>"))
 
@@ -18,15 +18,15 @@ Instructions:
 input()
 
 os.system(fn)
-if (os.path.exists("Hangman/words.txt")):
-    pth = "Hangman/words.txt"
+if (os.path.exists("Hangman/words.json")):
+    pth = "Hangman/words.json"
 else:
-    pth = "words.txt"
+    pth = "words.json"
     
-with open(pth,"r") as f:
-    wordlist = [x[:-1] for x in f if len(x)>=2]
-
-word = wordlist[random.randint(0,len(wordlist))].lower()
+with open(pth,"r") as fil:
+    dictionary = json.loads(fil.read())
+    word = random.choice(list(dictionary.keys()))
+    meaning = dictionary[word]
 
 
 
@@ -35,13 +35,15 @@ wordg = ['_' for i in range(len(word))]
 hangman = ["|","0","/","|","\\","/","\\"]
 
 man = ['' for i in range(7)]
+guslis = []
 hman = "HANGMAN"
 ind = 0
 
 while(1):
     print(f"""I Guessed a word. What is it?
 It has {len(word)} letters.
-Guess it before your choices make him the""")
+Guess it before your choices make him dead
+HINT:{meaning}""")
 
     for i in range(ind):
         print(hman[i],end=" ")
@@ -58,24 +60,32 @@ ___________
 
     if(ind!=7):
         
-        print(word)
+        
         for i in wordg:
             print(f"{i} ",end='')
         
         if "_" not in wordg:
             print("\nCONGRATULATIONS!!!")
             break
+
+        print("\nGuesses:",end='')
+        for i in guslis:
+            print(f"-> {i}",end='')
         
+
         gus = input("\nGuess a letter:>")
         
+        guslis.append(gus)
+        
+
         for i in range(len(word)):
             if(gus.lower() == word[i]):
                 correct = 1
                 wordg[i] = gus
                 
     else:
+        print("H A N G E D")
         print(f"The word was {word}")
-        print("YOU ARE HANGED")
         break
     if(not correct):
         man[ind] = hangman[ind]
