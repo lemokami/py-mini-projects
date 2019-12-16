@@ -28,7 +28,13 @@ with open(pth,"r") as fil:
     word = random.choice(list(dictionary.keys()))
     meaning = dictionary[word]
 
+print(f"""I Guessed a word. What is it?
+It has {len(word)} letters.
+Guess it before your choices make him dead""")
 
+input()
+
+os.system(fn)
 
 wordg = ['_' for i in range(len(word))]
 
@@ -40,10 +46,10 @@ hman = "HANGMAN"
 ind = 0
 
 while(1):
-    print(f"""I Guessed a word. What is it?
+    print(f"""
+-----HINT-----
 It has {len(word)} letters.
-Guess it before your choices make him dead
-HINT:{meaning}""")
+Meaning:{meaning}""")
 
     for i in range(ind):
         print(hman[i],end=" ")
